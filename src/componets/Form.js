@@ -56,7 +56,7 @@ const Error = styled.div`
 	margin-bottom: 2rem;
 `;
 
-const Form = () => {
+const Form = ({setResume}) => {
   const [data, setData] = useState({
     brand: "",
     year: "",
@@ -85,6 +85,10 @@ const Form = () => {
 		result = calculateBrand(brand) * result;
 		const incrementPlan = getPlan(plan);
 		result = parseFloat(incrementPlan * result).toFixed(2);
+		setResume({
+			quote: result,
+			data	
+		})
 	}
 
   return (
