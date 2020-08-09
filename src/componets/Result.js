@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import PropTypes from 'prop-types';
 
 const QuoteText = styled.p`
   color: #00838f;
@@ -10,7 +10,7 @@ const QuoteText = styled.p`
   margin: 0;
 `;
 
-const ResultQuote = styled.p`
+const ResultQuote = styled.div`
     text-align: center;
     padding: 0.5rem;
     border: 1px solid #26C6DA;
@@ -25,22 +25,14 @@ const Result = ({ quote }) => {
     <>
       <h1>Resultado</h1>
       <ResultQuote>
-        <TransitionGroup
-            component="p"
-            className="resultado"
-        >
-            <CSSTransition
-                classNames="resultado"
-                key={quote}
-                timeout={{enter: 500, exit: 500}}
-            >
-                <QuoteText>El total es: ${quote}</QuoteText>
-            </CSSTransition>
-        </TransitionGroup>
-
+        <QuoteText>El total es: ${quote}</QuoteText>
       </ResultQuote>
     </>
   );
 };
+
+Result.prototype = {
+  quote: PropTypes.number.isRequired
+}
 
 export default Result;

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
+import PropTypes from 'prop-types';
 
 import { 
 	getDifferenceYear, 
@@ -90,7 +91,7 @@ const Form = ({setResume, setLoading}) => {
     setTimeout(() => {
       setLoading(false);
       setResume({
-        quote: result,
+        quote: Number(result),
         data	
       })
       
@@ -154,5 +155,10 @@ const Form = ({setResume, setLoading}) => {
     </form>
   );
 };
+
+Form.prototype = {
+  setResume: PropTypes.func.isRequired,
+  setLoading: PropTypes.func.isRequired,
+}
 
 export default Form;
