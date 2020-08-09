@@ -56,7 +56,7 @@ const Error = styled.div`
 	margin-bottom: 2rem;
 `;
 
-const Form = ({setResume}) => {
+const Form = ({setResume, setLoading}) => {
   const [data, setData] = useState({
     brand: "",
     year: "",
@@ -73,7 +73,7 @@ const Form = ({setResume}) => {
 	};
 	
 	const handleSubmit = e => {
-		e.preventDefault();
+    e.preventDefault();
 		if (brand.trim() === '' || year.trim() === '' || plan.trim() === '') {
 			setError(true);
 			return
@@ -85,10 +85,18 @@ const Form = ({setResume}) => {
 		result = calculateBrand(brand) * result;
 		const incrementPlan = getPlan(plan);
 		result = parseFloat(incrementPlan * result).toFixed(2);
-		setResume({
-			quote: result,
-			data	
-		})
+    setLoading(true);
+
+    setTimeout(() => {
+      setLoading(false);
+      setResume({
+        quote: result,
+        data	
+      })
+      
+    }, 3000);
+
+    
 	}
 
   return (

@@ -4,7 +4,7 @@ import Header from './componets/Header';
 import Form from './componets/Form';
 import Resume from './componets/Resume';
 import Result from './componets/Result';
-
+import Spinner from './componets/Spinner';
 
 
 const Container = styled.div`
@@ -21,7 +21,8 @@ const ContainerForm = styled.div`
 function App() {
 
   const [resume, setResume] = useState({})
-  
+  const [loading, setLoading] = useState(false);
+
   const { data, quote } = resume;
 
 
@@ -32,8 +33,16 @@ function App() {
       <ContainerForm>
         <Form
           setResume={setResume}
-        
+          setLoading={setLoading}
         />
+
+        {
+          loading ?
+            <Spinner />
+          :
+          null  
+        }
+        
         {
           data ?
           <> 
